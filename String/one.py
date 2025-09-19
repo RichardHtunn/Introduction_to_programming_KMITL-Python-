@@ -1,8 +1,13 @@
 print(" *** Adding number ***")
 user_input = input("Enter your words : ").split()
 
-str_list = []
-for i in user_input:
-    str_list.append(i)
+for i in range(len(user_input)):
+    new_input = user_input[i]
+    if i % 2 == 1:
+        new_input = new_input[::-1]
+    print(f"{new_input}{i+1} ",end="")
+print()
 
-print(str_list)
+print("==== End of program =====")
+
+
