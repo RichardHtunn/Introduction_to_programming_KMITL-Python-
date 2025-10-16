@@ -6,22 +6,21 @@ cipher_key = {
     ('X', 'A'): 'm', ('X', 'D'): 'r', ('X', 'F'): 'e', ('X', 'G'): 'w', ('X', 'X'): 'y'
 }
 
-def decrypt_adfgx(ciphertext):
-    if len(ciphertext) % 2 != 0 or any(c not in 'ADFGX' for c in cipher_key):
+def decrypt_key(cipherkey):
+    if len(cipherkey) % 2 != 0 or any(c not in "ADFGX" for c in cipherkey): # check whether ADFGX is in "cipherkey"
         return "FAILED TO DECRYPT"
 
     decrypted_message = ""
+    for i in range(0, len(cipherkey),2): # user increasement 2 becasue the pair gonna be 2 letters
+        pair = (cipherkey[i], cipherkey[i+1]) # pair gonna be tuple because the keys in the cipher_key dict are the tuples
 
-    for i in range(0, len(ciphertext), 2):
-        pair = (ciphertext[i], ciphertext[i + 1])
         if pair in cipher_key:
             decrypted_message += cipher_key[pair]
         else:
             return "FAILED TO DECRYPT"
-
+    
     return decrypted_message
 
-ciphertext = input("Input ADFGX cipher text: ").strip().upper()
-
-decrypted_message = decrypt_adfgx(ciphertext)
+cipherkey = input("Input ADFGX cipher text : ").strip().upper()
+decrypted_message = decrypt_key(cipherkey)
 print(decrypted_message)
